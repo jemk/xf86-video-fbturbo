@@ -228,10 +228,6 @@ int sunxi_hw_cursor_set_position(sunxi_disp_t *ctx, int x, int y)
     __disp_pos_t pos = { x, y };
     tmp[0] = ctx->fb_id;
     tmp[1] = (uintptr_t)&pos;
-    if (pos.x < 0)
-        pos.x = 0;
-    if (pos.y < 0)
-        pos.y = 0;
     result = ioctl(ctx->fd_disp, DISP_CMD_HWC_SET_POS, &tmp);
     if (result >= 0) {
         ctx->cursor_x = pos.x;
